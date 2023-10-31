@@ -1,0 +1,12 @@
+To do project
+
+- Dynamically create todo objects/events
+- event has properties: title, description, dueDate, priority, notes, checklist, etc.
+- have a projects section. Each project can contain many todo events.
+- Allow to create new projects and new events.
+- 
+
+-- Steps:
+
+- define an event class
+- define project class
