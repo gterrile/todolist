@@ -10,12 +10,10 @@
   <div class="app-container">
     <div class="sidebar">
       <h1>Projects</h1>
-      <ul>
-        <li><a href="">All Events</a></li>
-        <li><a href="">Home</a></li>
-        <li><a href="">Gym</a></li>
-        <li><a href="">Study</a></li>
-        <li><a href="">Car</a></li>
+      <label for="">New project name:</label>
+      <input type="text" id="new-project-name">
+      <button id="btn-new-project">Add</button>
+      <ul id="projects-list">
       </ul>
     </div>
     <div class="main">
@@ -53,6 +51,7 @@
               </li>
               <li>
                 <label for="">Project</label>
+     
                 <select name="project" id="project">
                   <option value="Todos">Todos</option>
                   <option value="home">Home</option>
