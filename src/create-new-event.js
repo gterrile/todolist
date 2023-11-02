@@ -2,7 +2,7 @@ import { createNewId } from "./create-new-id.js";
 import { eventsList } from "./events-list.js";
 import Event from "./event.js";
 
-export function createNewEvent() {
+export function createNewEvent(project) {
 
   let eventId = JSON.parse(localStorage.getItem('allEvents')).length;
   const title = document.getElementById('input-form-title').value;
@@ -15,9 +15,9 @@ export function createNewEvent() {
       priorityRadio = radioPriority[i].value;
     }
   }
-  const project = document.getElementById('project');
+  // const project = document.getElementById('project');
 
   // Create and return event
-  const newEvent = new Event (eventId, title, description, dueDate, priorityRadio, project.value);
+  const newEvent = new Event (eventId, title, description, dueDate, priorityRadio, project);
   return newEvent
 }
