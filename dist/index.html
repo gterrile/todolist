@@ -20,7 +20,20 @@
 
     <div class="main" id="main">
       <div class="header" id="header"></div>
-      <div class="add" id="add"></div>
+      <div class="add" id="add">
+        <input type="text" id="input-form-title" autocomplete="off" placeholder="Title">
+        <textarea name="" id="input-form-description" cols="30" rows="2" autocomplete="off" placeholder="Description"></textarea>
+        <label for="">Due Date</label>
+        <input type="date" id="input-form-duedate">
+        <label for="">Priority</label>
+        <label for="">Low</label>
+        <input type="radio" name="priority" value="low"></radio>
+        <label for="">Medium</label>
+        <input type="radio" name="priority" value="low"></radio>
+        <label for="">High</label>
+        <input type="radio" name="priority" value="low"></radio>
+        <button id="btn-add-event" class="btn-add-event">+</button>
+      </div>
       <div class="content" id="content"></div>
     </div>
 
