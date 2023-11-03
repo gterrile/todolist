@@ -17,57 +17,13 @@
       <ul id="projects-list">
       </ul>
     </div>
-    <div class="main" id="main">
-      <button id="btn-add-event">Add Event</button>
 
-  
-      <!-- modal layout -->
-      <div class="modal" id="modal">
-        <div class="modal-header">
-          <h2>Create new Event</h2>
-        </div>
-        <div class="modal-body" id="modal-body">
-          <form action="">
-            <ul>
-              <li class="list-title">
-                <label for="input-form-title">Title</label>
-                <input type="text" class="input-form-title" id="input-form-title" autocomplete="off">
-              </li>
-              <li class="list-description">
-                <label for="input-form-description">Description</label>
-                <textarea cols="30" rows="8" id="input-form-description" autocomplete="off"></textarea>
-              </li>
-              <li>
-                <label for="input-form-duedate">Due Date</label>
-                <input type="date" id="input-form-duedate">
-              </li>
-              <li>
-                <label for="">Priority</label>
-                <label for="">Low</label>
-                <input type="radio" name="priority" value="low">
-                <label for="">Medium</label>
-                <input type="radio" name="priority" value="medium" checked>
-                <label for="">High</label>
-                <input type="radio" name="priority" value="high">
-              </li>
-              <li>
-                <label for="">Project</label>
-     
-                <select name="project" id="project">
-                  <option value="Todos">Todos</option>
-                  <option value="home">Home</option>
-                  <option value="study">Study</option>
-                  <option value="fitness">Fitness</option>
-                  <option value="car">Car Maintenance</option>
-                </select>
-              </li>
-              <button type="button" id="btn-submit-event">Add</button>
-            </ul>
-          </form>
-        </div>
-      
-      </div>
+    <div class="main" id="main">
+      <div class="header" id="header"></div>
+      <div class="add" id="add"></div>
+      <div class="content" id="content"></div>
     </div>
+
   </div>
 
   <script src="main.js"></script>

@@ -12,6 +12,10 @@
 
 .main {
   background-color: lightgrey;
+  display: grid;
+  grid-template-rows: 1fr 2fr 9fr;
+  height: 100vh;
+  width: 100vw;
 }
 
 
@@ -21,4 +25,17 @@ h1 {
 
 #modal {
   display: none;
+}
+
+.content {
+  display: grid;
+  grid-auto-rows: min-content;
+  gap: 10px;
+}
+
+.event-wrapper {
+  border: 1px solid red;
+  width: 100%;
+  display: grid;
+  grid-template-rows: 1fr 3fr 1fr 1fr;
 }

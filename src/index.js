@@ -4,21 +4,20 @@ import Event from './event.js'
 import { createNewEvent } from './create-new-event.js';
 
 //DOM const elements
-const modalBody = document.getElementById('modal-body');
-const btnAddEvent = document.getElementById('btn-add-event');
-// const btnSubmitEvent = document.getElementById('btn-submit-event');
 const deleteData = document.getElementById('delete-data');
 const btnNewProject = document.getElementById('btn-new-project');
 const newProjectName = document.getElementById('new-project-name');
 const main = document.getElementById('main');
+const header = document.getElementById('header');
+const add = document.getElementById('add');
+const content = document.getElementById('content');
+
 let projects = document.getElementsByName('projects');  
-
-
 
 initializeStorageFile();
 initializeProjectsFile();
 displaySideBarProjects();
-projectSelector()
+projectSelector();
 projects[0].click();
 
 
@@ -36,27 +35,14 @@ btnNewProject.addEventListener('click', function() {
 })
 
 
-////////////////
-// ADD NEW EVENT
-btnAddEvent.addEventListener('click', function() {
-  // DOM
-  modalBody.setAttribute('style', 'display: block');
-  
-})
-
-
-// ///////////////////
-// // SUBMIT NEW EVENT
-// btnSubmitEvent.addEventListener('click', function() { 
-//   // Logic
-//   const event = createNewEvent();
-//   let temporaryList = JSON.parse(localStorage.getItem('allEvents'))
-//   temporaryList.push(event);
-//   localStorage.setItem('allEvents', JSON.stringify(temporaryList));
-//   // DOM
-//   modalBody.setAttribute('style', 'display: none');
-
-// })
+//////////////
+// NEW PROJECT
+function makeNewProject() {
+  let tempList = JSON.parse(localStorage.getItem('projects'));
+  tempList.push(newProjectName.value);
+  localStorage.setItem('projects', JSON.stringify(tempList));
+  newProjectName.value = '';
+}
 
 
 //////////////////////////
@@ -71,16 +57,6 @@ deleteData.addEventListener('click', function() {
     displaySideBarProjects();
   }
 })
-
-
-//////////////
-// NEW PROJECT
-function makeNewProject() {
-  let tempList = JSON.parse(localStorage.getItem('projects'));
-  tempList.push(newProjectName.value);
-  localStorage.setItem('projects', JSON.stringify(tempList));
-  newProjectName.value = '';
-}
 
 
 /////////////////////////////
@@ -139,88 +115,28 @@ function displaySideBarProjects() {
 // SIDEBAR EVENT LISTENERS
 function projectSelector() {
   const projects = document.getElementsByName('projects');
-  
-  projects.forEach(item => {
-
-    item.addEventListener('click', function() {
+  projects.forEach(project => {
+    project.addEventListener('click', function() {
       
-      // DOM
-        while (main.firstChild) {
-          main.removeChild(main.firstChild);
-        }
-        let title = document.createElement('h1');
-        title.textContent = item.value;
-        main.appendChild(title)
-
-        let inputLabel = document.createElement('label');
-        inputLabel.textContent = 'Title';
-        main.appendChild(inputLabel);
-        let inputText = document.createElement('input');
-        inputText.setAttribute('id', 'input-form-title');
-        main.appendChild(inputText);
-        let descLabel = document.createElement('label');
-        descLabel.textContent = 'Description';
-        main.appendChild(descLabel)
-        let inputDesc = document.createElement('textarea');
-        inputDesc.setAttribute('id', 'input-form-description');
-        main.appendChild(inputDesc);
-        let dueLabel = document.createElement('label');
-        dueLabel.textContent = 'Due';
-        main.appendChild(dueLabel);
-        let due = document.createElement('input');
-        due.setAttribute('type', 'date');
-        due.setAttribute('id', 'input-form-duedate');
-        main.appendChild(due);
-        let prioLabel = document.createElement('label');
-        prioLabel.textContent = 'Priority';
-        main.appendChild(prioLabel);
-
-        let lb1 = document.createElement('label');
-        lb1.textContent = 'low';
-        main.appendChild(lb1);
-        let rad1 = document.createElement('input');
-        rad1.setAttribute('type', 'radio');
-        rad1.setAttribute('name', 'priority');
-        rad1.setAttribute('value', 'low');
-        main.appendChild(rad1);
-        
-        let lb2 = document.createElement('label');
-        lb2.textContent = 'medium';
-        main.appendChild(lb2);
-        let rad2 = document.createElement('input');
-        rad2.setAttribute('type', 'radio');
-        rad2.setAttribute('name', 'priority');
-        rad2.setAttribute('value', 'medium');
-        main.appendChild(rad2);
-
-        let lb3 = document.createElement('label');
-        lb3.textContent = 'high';
-        main.appendChild(lb3);
-        let rad3 = document.createElement('input');
-        rad3.setAttribute('type', 'radio');
-        rad3.setAttribute('name', 'priority');
-        rad3.setAttribute('value', 'high');
-        main.appendChild(rad3);
-
-        let btnAdd = document.createElement('button');
-        btnAdd.classList.add('btn-add-project');
-        btnAdd.textContent = 'Add to ' + item.value;
-        main.appendChild(btnAdd);
-
-        // // Event Listener for btnAdd
-        addtoProject(item.value);
-
-        // List todos for that project
-        
+      createMainDom();
+      createMainEvents(project.value);
+      addtoProject(project.value);
     })
   
   })
 }
 
+
+
+///////////////////////
+// ADD EVENT TO PROJECT
 function addtoProject(project) {
-  const btnAdd = document.querySelector('.btn-add-project');
-  btnAdd.addEventListener('click', function() {
-    
+  
+  let btnNewEvent = document.querySelector('#btn-add-event');
+  console.log('clicked');
+  
+  btnNewEvent.addEventListener('click', function() {
+    console.log('asdfasdfasdfasdf')
     // Logic
     const event = createNewEvent(project);
     let temporaryList = JSON.parse(localStorage.getItem('allEvents'))
@@ -228,6 +144,135 @@ function addtoProject(project) {
     localStorage.setItem('allEvents', JSON.stringify(temporaryList));
   })
 }
+
+
+/////////////////////////
+// DISPLAY HEADER AND ADD
+function createMainDom() {
+  const projects = document.getElementsByName('projects');
+  projects.forEach(project => {
+    project.addEventListener('click', function() {
+      
+      while (header.firstChild) {
+        header.removeChild(header.firstChild);
+      }
+      while (add.firstChild) {
+        add.removeChild(add.firstChild);
+      }
+
+      let title = document.createElement('h1');
+      title.textContent = project.value;
+      header.appendChild(title)
+
+      let inputLabel = document.createElement('label');
+      inputLabel.textContent = 'Title';
+      add.appendChild(inputLabel);
+      let inputText = document.createElement('input');
+      inputText.setAttribute('id', 'input-form-title');
+      inputText.setAttribute('autocomplete', 'off');
+      add.appendChild(inputText);
+
+      let descLabel = document.createElement('label');
+      descLabel.textContent = 'Description';
+      add.appendChild(descLabel)
+      let inputDesc = document.createElement('textarea');
+      inputDesc.setAttribute('id', 'input-form-description');
+      inputDesc.setAttribute('autocomplete', 'off');
+      add.appendChild(inputDesc);
+
+      let dueLabel = document.createElement('label');
+      dueLabel.textContent = 'Due';
+      add.appendChild(dueLabel);
+      let due = document.createElement('input');
+      due.setAttribute('type', 'date');
+      due.setAttribute('id', 'input-form-duedate');
+      add.appendChild(due);
+
+      let prioLabel = document.createElement('label');
+      prioLabel.textContent = 'Priority';
+      add.appendChild(prioLabel);
+
+      let lb1 = document.createElement('label');
+      lb1.textContent = 'low';
+      add.appendChild(lb1);
+      let rad1 = document.createElement('input');
+      rad1.setAttribute('type', 'radio');
+      rad1.setAttribute('name', 'priority');
+      rad1.setAttribute('value', 'low');
+      add.appendChild(rad1);
+      
+      let lb2 = document.createElement('label');
+      lb2.textContent = 'medium';
+      add.appendChild(lb2);
+      let rad2 = document.createElement('input');
+      rad2.setAttribute('type', 'radio');
+      rad2.setAttribute('name', 'priority');
+      rad2.setAttribute('value', 'medium');
+      add.appendChild(rad2);
+
+      let lb3 = document.createElement('label');
+      lb3.textContent = 'high';
+      add.appendChild(lb3);
+      let rad3 = document.createElement('input');
+      rad3.setAttribute('type', 'radio');
+      rad3.setAttribute('name', 'priority');
+      rad3.setAttribute('value', 'high');
+      add.appendChild(rad3);
+
+      let btnAdd = document.createElement('button');
+      btnAdd.classList.add('btn-add-event');
+      btnAdd.setAttribute('id', 'btn-add-event');
+      btnAdd.textContent = 'Add to ' + project.value;
+      add.appendChild(btnAdd);
+    })
+  })
+}
+
+
+
+/////////////////
+// DISPLAY EVENTS
+function createMainEvents(projectName) {
+
+  const projects = document.getElementsByName('projects');
+  let allEvents = JSON.parse(localStorage.getItem('allEvents'));
+
+  while (content.firstChild) {
+    content.removeChild(content.firstChild);
+  }
+
+  allEvents.forEach(event => {
+    if (event.project == projectName) {
+      let eventWrapper = document.createElement('div');
+      eventWrapper.classList.add('event-wrapper');
+      content.appendChild(eventWrapper);
+
+      // Create DOM elements and display event info
+      let title = document.createElement('span');
+      title.textContent = event.title;
+      eventWrapper.appendChild(title);
+
+      let description = document.createElement('span');
+      description.textContent = event.description;
+      eventWrapper.appendChild(description);
+      
+      let due = document.createElement('span');
+      due.textContent = event.due;
+      eventWrapper.appendChild(due);
+
+      let priority = document.createElement('span');
+      priority.textContent = event.priority;
+      eventWrapper.appendChild(priority);
+
+    }
+  })
+}
+
+
+
+
+
+
 
 
 
