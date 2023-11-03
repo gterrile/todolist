@@ -1,7 +1,8 @@
 export default function displayEventsForThisProject(projectName) {
 
-  const projects = document.getElementsByName('projects');
+  // const projects = document.getElementsByName('projects');
   let allEvents = JSON.parse(localStorage.getItem('allEvents'));
+  const content = document.getElementById('content');
 
   while (content.firstChild) {
     content.removeChild(content.firstChild);
@@ -29,7 +30,6 @@ export default function displayEventsForThisProject(projectName) {
       let priority = document.createElement('span');
       priority.textContent = event.priority;
       eventWrapper.appendChild(priority);
-
     }
   })
 }

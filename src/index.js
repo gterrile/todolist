@@ -12,10 +12,9 @@ const newProjectName = document.getElementById('new-project-name');
 const main = document.getElementById('main');
 const header = document.getElementById('header');
 const add = document.getElementById('add');
-const content = document.getElementById('content');
+
 let projects = document.getElementsByName('projects');  
 const btnNewEvent = document.getElementById('btn-add-event');
-
 
 
 // ERASE LOCALSTORAGE DATA
@@ -74,13 +73,13 @@ function addtoProject() {
         console.log(project.value);
       }
     })
-    
 
-    // Logic
     const event = createNewEvent(currentproject);
     let temporaryList = JSON.parse(localStorage.getItem('allEvents'))
     temporaryList.push(event);
     localStorage.setItem('allEvents', JSON.stringify(temporaryList));
+
+    displayEventsForThisProject(currentproject);
   })
 }
 
@@ -90,47 +89,6 @@ initializeProjectsFile();
 displaySideBarProjects();
 projectSelector();
 addtoProject();
-
-
-
-
-
-
-// let event = ['1', 'run', 'run a mile', 'today', 'high', 'fitness'];
-// let evento = [{
-//   id: '1',
-//   title: 'jump',
-//   desc: 'jump a mile',
-//   due: 'today',
-//   prio: 'high',
-//   project: 'crossfit'
-// }]
-
-// let string = JSON.stringify(evento);
-// localStorage.setItem('lista', string);
-// console.log(localStorage.lista);
-
-// let restring = localStorage.getItem('lista');
-// let rearray = JSON.parse(restring)
-// console.log(rearray[0].desc);
-
-// Localstorage cheat sheet
-
-// window.localStorage.setItem("newEvent", JSON.stringify(newEvent));
-// let newObject = window.localStorage.getItem("newEvent");
-// console.log(JSON.parse(newObject).description);
-
-// localStorage.german = 'german'
-// console.log(localStorage.german);
-// localStorage.removeItem("german");
-
-
-
-
-
-
-
-
 
 
 
