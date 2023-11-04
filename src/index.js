@@ -5,7 +5,7 @@ import displaySideBarProjects from './display-sidebar-projects.js';
 import displayEventsForThisProject from './display-events.js';
 import { initializeProjectsFile, initializeStorageFile } from './local-storage.js';
 import currentProject from './current-project.js';
-
+import addtoProject from './add-to-project.js';
 
 //DOM const elements
 const deleteData = document.getElementById('delete-data');
@@ -58,24 +58,6 @@ function projectSelector() {
     })
   })
 }
-
-// ADD EVENT TO PROJECT
-function addtoProject() {
-  
-
-  const btnNewEvent = document.getElementById('btn-add-event');
-  btnNewEvent.addEventListener('click', function() {
-    
-    const currentproject = currentProject();
-    const event = createNewEvent(currentproject);
-    let temporaryList = JSON.parse(localStorage.getItem('allEvents'))
-    temporaryList.push(event);
-    localStorage.setItem('allEvents', JSON.stringify(temporaryList));
-    displayEventsForThisProject(currentproject);
-  })
-}
-
-
 
 
 initializeStorageFile();
