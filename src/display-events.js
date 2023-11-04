@@ -1,3 +1,5 @@
+import deleteEvent from "./delete-events.js"
+
 export default function displayEventsForThisProject(projectName) {
 
   // const projects = document.getElementsByName('projects');
@@ -30,6 +32,20 @@ export default function displayEventsForThisProject(projectName) {
       let priority = document.createElement('span');
       priority.textContent = event.priority;
       eventWrapper.appendChild(priority);
+
+      let check = document.createElement('input');
+      check.setAttribute('type', 'checkbox');
+      eventWrapper.appendChild(check);
+
+      let btnDelete = document.createElement('button');
+      btnDelete.classList.add('btn-delete');
+      btnDelete.setAttribute('id', `${event.id}`);
+      btnDelete.textContent = 'delete';
+      eventWrapper.appendChild(btnDelete);
+
+      btnDelete.addEventListener('click', function() {
+        deleteEvent(event.id);
+      })
     }
   })
 }
