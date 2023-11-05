@@ -1,5 +1,6 @@
 import deleteProject from "./delete-project.js";
 import displayEventsForThisProject from "./display-events.js";
+import { selectProject } from "./select-project.js";
 
 export default function displaySideBarProjects() {
   const projectList = document.getElementById('projects-list');
@@ -23,7 +24,11 @@ export default function displaySideBarProjects() {
     let itemLabel = document.createElement('label');
     itemLabel.textContent = item;
     liItem.appendChild(itemLabel);
-    
+
+    itemRadio.addEventListener('click', function() {  
+      displayEventsForThisProject(item);
+    })
+
     if (item != 'todos') {
       let itemDelete = document.createElement('ion-icon');
       itemDelete.setAttribute('name', 'trash-outline');
@@ -34,12 +39,9 @@ export default function displaySideBarProjects() {
         if (confirm(`Delete project: ${this.id}`)) {
           deleteProject(this.id);
           displaySideBarProjects();
+          selectProject('todos');
         }
       })
     }
-
-    // if (item == 'todos') {
-    //   itemRadio.checked = true;
-    // }
   })
 }

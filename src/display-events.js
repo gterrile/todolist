@@ -1,10 +1,12 @@
-import deleteEvent from "./delete-events.js"
+import deleteEvent from "./delete-events.js";
+import currentProject from "./current-project.js";
 
-export default function displayEventsForThisProject(projectName) {
+export default function displayEventsForThisProject() {
 
   // const projects = document.getElementsByName('projects');
   let allEvents = JSON.parse(localStorage.getItem('allEvents'));
   const content = document.getElementById('content');
+  let projectName = currentProject();
 
   while (content.firstChild) {
     content.removeChild(content.firstChild);

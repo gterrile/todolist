@@ -6,20 +6,21 @@ import displayEventsForThisProject from './display-events.js';
 import { initializeProjectsFile, initializeStorageFile } from './local-storage.js';
 import currentProject from './current-project.js';
 import addtoProject from './add-to-project.js';
+import { selectProject } from './select-project.js';
 
 //DOM const elements
-const deleteData = document.getElementById('delete-data');
-const btnNewProject = document.getElementById('btn-new-project');
-const newProjectName = document.getElementById('new-project-name');
+
+
 const main = document.getElementById('main');
 const header = document.getElementById('header');
 const add = document.getElementById('add');
 
-let projects = document.getElementsByName('projects');  
-const btnNewEvent = document.getElementById('btn-add-event');
+
+
 
 
 // ERASE LOCALSTORAGE DATA
+const deleteData = document.getElementById('delete-data');
 deleteData.addEventListener('click', function() {
   if (confirm('Erase All Events?')) {
     localStorage.clear();  
@@ -28,41 +29,65 @@ deleteData.addEventListener('click', function() {
     initializeProjectsFile();
     // DOM
     displaySideBarProjects();
+    selectProject('todos');
   }
 })
 
 
+
+
 // ADD NEW PROJECT
+const btnNewProject = document.getElementById('btn-new-project');
 btnNewProject.addEventListener('click', function() {
   
+  let newProjectName = document.getElementById('new-project-name');
   // Handles logic
   if (newProjectName.value != "") {
     let tempList = JSON.parse(localStorage.getItem('projects'));
     tempList.push(newProjectName.value);
     localStorage.setItem('projects', JSON.stringify(tempList));
-    newProjectName.value = '';
   }
-
   // Handles DOM
   displaySideBarProjects();
-  projectSelector()
+  selectProject(newProjectName.value);
+  newProjectName.value = '';
+  newProjectName.placeholder = 'New project';
+
 })
 
 
-// GO TO PROJECT
-function projectSelector() {
-  const projects = document.getElementsByName('projects');
-  projects.forEach(project => {
-    project.addEventListener('click', function() {
-      displayEventsForThisProject(project.value);
-    })
-  })
-}
 
+
+// ADD NEW EVENT
+const btnNewEvent = document.getElementById('btn-add-event');
+btnNewEvent.addEventListener('click', function() {
+  addtoProject();
+  displayEventsForThisProject();
+  // DOM
+
+})
+
+
+// // GO TO PROJECT
+// function projectSelector() {
+//   const projects = document.getElementsByName('projects');
+//   projects.forEach(project => {
+//     project.addEventListener('click', function() {
+//       displayEventsForThisProject(project.value);
+//       displayTitle();
+//     })
+//   })
+// }
+
+// function displayTitle() {
+//   let current = currentProject();
+//   console.log('title', current)
+// }
 
 initializeStorageFile();
 initializeProjectsFile();
 displaySideBarProjects();
-projectSelector();
-addtoProject();
+selectProject('todos');
+
+
 
