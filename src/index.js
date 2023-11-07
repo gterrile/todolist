@@ -7,16 +7,8 @@ import { initializeProjectsFile, initializeStorageFile } from './local-storage.j
 import currentProject from './current-project.js';
 import addtoProject from './add-to-project.js';
 import { selectProject } from './select-project.js';
-
-//DOM const elements
-
-
-const main = document.getElementById('main');
-const header = document.getElementById('header');
-const add = document.getElementById('add');
-
-
-
+import resetForm from './reset-form.js';
+import createNewProject from './create-new-project.js';
 
 
 // ERASE LOCALSTORAGE DATA
@@ -34,55 +26,30 @@ deleteData.addEventListener('click', function() {
 })
 
 
-
-
 // ADD NEW PROJECT
 const btnNewProject = document.getElementById('btn-new-project');
 btnNewProject.addEventListener('click', function() {
-  
-  let newProjectName = document.getElementById('new-project-name');
-  // Handles logic
-  if (newProjectName.value != "") {
-    let tempList = JSON.parse(localStorage.getItem('projects'));
-    tempList.push(newProjectName.value);
-    localStorage.setItem('projects', JSON.stringify(tempList));
-  }
-  // Handles DOM
+  // Logic
+  const newProject = createNewProject();
+  // DOM
   displaySideBarProjects();
-  selectProject(newProjectName.value);
-  newProjectName.value = '';
-  newProjectName.placeholder = 'New project';
-
+  selectProject(newProject);
+  resetForm();
 })
-
 
 
 
 // ADD NEW EVENT
 const btnNewEvent = document.getElementById('btn-add-event');
 btnNewEvent.addEventListener('click', function() {
+  // Logic
   addtoProject();
   displayEventsForThisProject();
   // DOM
-
+  resetForm();
 })
 
 
-// // GO TO PROJECT
-// function projectSelector() {
-//   const projects = document.getElementsByName('projects');
-//   projects.forEach(project => {
-//     project.addEventListener('click', function() {
-//       displayEventsForThisProject(project.value);
-//       displayTitle();
-//     })
-//   })
-// }
-
-// function displayTitle() {
-//   let current = currentProject();
-//   console.log('title', current)
-// }
 
 initializeStorageFile();
 initializeProjectsFile();

@@ -9,12 +9,14 @@
 
   <div class="app-container">
     <div class="sidebar">
-      <button id="delete-data">Delete Data</button>
-      <h1>Projects</h1>
-      <input type="text" id="new-project-name" placeholder="New project">
-      <button id="btn-new-project">Add</button>
-      <ul id="projects-list">
-      </ul>
+
+      <h1>My projects</h1>
+      <div class="add-field">
+        <input type="text" id="new-project-name" placeholder="New project">
+        <button id="btn-new-project">Add</button>
+      </div>
+      <ul id="projects-list"></ul>
+      <div class="delete-field"><button id="delete-data">Delete Data</button></div>
     </div>
 
     <div class="main" id="main">
@@ -28,9 +30,9 @@
         <label for="">Low</label>
         <input type="radio" name="priority" value="low"></radio>
         <label for="">Medium</label>
-        <input type="radio" name="priority" value="low"></radio>
+        <input type="radio" name="priority" value="medium"></radio>
         <label for="">High</label>
-        <input type="radio" name="priority" value="low"></radio>
+        <input type="radio" name="priority" value="high"></radio>
         <button id="btn-add-event" class="btn-add-event">+</button>
       </div>
       <div class="content" id="content"></div>

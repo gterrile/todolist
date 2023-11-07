@@ -1,6 +1,7 @@
 import deleteProject from "./delete-project.js";
 import displayEventsForThisProject from "./display-events.js";
 import { selectProject } from "./select-project.js";
+import displayTitle from "./display-title.js";
 
 export default function displaySideBarProjects() {
   const projectList = document.getElementById('projects-list');
@@ -26,6 +27,7 @@ export default function displaySideBarProjects() {
     liItem.appendChild(itemLabel);
 
     itemRadio.addEventListener('click', function() {  
+      displayTitle(item);
       displayEventsForThisProject(item);
     })
 
