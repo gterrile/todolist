@@ -33,18 +33,21 @@ export default function displayEventsForThisProject() {
       let check = document.createElement('ion-icon');
       
       if (allEvents[event.id].checked) {
-        check.setAttribute('name', 'checkmark-circle-outline');
+        check.setAttribute('name', 'checkmark-done-outline');
+        check.setAttribute('style', 'color: var(--main-color)');
       }
       else {
-        check.setAttribute('name', 'ellipse-outline');
+        check.setAttribute('name', 'checkmark-outline');
+        check.setAttribute('style', 'color: var(--third-color)');
       }
 
       // I need to update localStorage when user checks an event.
 
       check.addEventListener('click', function() {
         
-        if (check.name == 'checkmark-circle-outline') {
-          check.setAttribute('name', 'ellipse-outline');
+        if (check.name == 'checkmark-done-outline') {
+          check.setAttribute('name', 'checkmark-outline');
+          check.setAttribute('style', 'color: var(--third-color)');
           check.classList.remove('checked');
 
           allEvents[event.id].checked = false;
@@ -52,7 +55,8 @@ export default function displayEventsForThisProject() {
         }
         
         else {
-          check.setAttribute('name', 'checkmark-circle-outline');
+          check.setAttribute('name', 'checkmark-done-outline');
+          check.setAttribute('style', 'color: var(--main-color)');
           check.classList.add('checked');
 
           allEvents[event.id].checked = true;
@@ -67,30 +71,28 @@ export default function displayEventsForThisProject() {
       title.textContent = event.title;
       middle.appendChild(title);
 
-      let description = document.createElement('span');
+      let description = document.createElement('p');
+      description.classList.add('event-description');
       description.textContent = event.description;
       middle.appendChild(description);
       
       let due = document.createElement('span');
+      due.classList.add('event-duedate');
       due.textContent = event.due;
       middle.appendChild(due);
 
       let priority = document.createElement('span');
+      priority.classList.add('event-priority');
       priority.textContent = event.priority;
       middle.appendChild(priority);
 
       let btnDelete = document.createElement('ion-icon');
       btnDelete.classList.add('btn-delete');
-      btnDelete.setAttribute('name', 'ellipse-outline');
       btnDelete.setAttribute('id', `${event.id}`);
+      btnDelete.setAttribute('name', 'close-outline');
+      btnDelete.setAttribute('style', 'color: var(--third-color)');
       btnDelete.textContent = 'delete';
       right.appendChild(btnDelete);
-      btnDelete.addEventListener('mouseover', function() {
-        btnDelete.setAttribute('name', 'close-circle-outline');
-      })
-      btnDelete.addEventListener('mouseleave', function() {
-        btnDelete.setAttribute('name', 'ellipse-outline');
-      })
       btnDelete.addEventListener('click', function() {
         deleteEvent(event.id);
       })

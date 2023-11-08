@@ -21,3 +21,4 @@ export function createNewEvent(project) {
   const newEvent = new Event (eventId, title, description, dueDate, priorityRadio, project, false);
   return newEvent
 }
+

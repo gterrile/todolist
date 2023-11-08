@@ -23,6 +23,7 @@ export default function displaySideBarProjects() {
     itemRadio.classList.add('a-item');
     liItem.appendChild(itemRadio);
     let itemLabel = document.createElement('label');
+    itemLabel.classList.add('project-label');
     itemLabel.textContent = item;
     liItem.appendChild(itemLabel);
 
@@ -33,7 +34,7 @@ export default function displaySideBarProjects() {
 
     if (item != 'todos') {
       let itemDelete = document.createElement('ion-icon');
-      itemDelete.setAttribute('name', 'trash-outline');
+      itemDelete.setAttribute('name', 'close-sharp');
       itemDelete.setAttribute('id', `${item}`)
       liItem.appendChild(itemDelete);
   
