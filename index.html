@@ -3,6 +3,9 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
   <title>To Do</title>
 </head>
 <body>
@@ -22,18 +25,32 @@
     <div class="main" id="main">
       <div class="header" id="header"></div>
       <div class="add" id="add">
-        <input type="text" id="input-form-title" autocomplete="off" placeholder="Title">
-        <textarea name="" id="input-form-description" cols="30" rows="2" autocomplete="off" placeholder="Description"></textarea>
-        <label for="">Due Date</label>
-        <input type="date" id="input-form-duedate">
-        <label for="">Priority</label>
-        <label for="">Low</label>
-        <input type="radio" name="priority" value="low"></radio>
-        <label for="">Medium</label>
-        <input type="radio" name="priority" value="medium"></radio>
-        <label for="">High</label>
-        <input type="radio" name="priority" value="high"></radio>
-        <button id="btn-add-event" class="btn-add-event">+</button>
+        <div class="add-left"></div>
+        <div class="add-middle">
+          <input type="text" id="input-form-title" autocomplete="off" placeholder="Title">
+          <input type="text" name="" id="input-form-description" cols="30" rows="2" autocomplete="off" placeholder="Description">
+          <div class="date-field">
+            <label for="">Due Date</label>
+            <input type="date" id="input-form-duedate">
+          </div>
+          
+          <div class="priority-block">
+            <label for="">Priority</label>
+            <div class="priority-selector">
+              <label for="">Low</label>
+              <input type="radio" name="priority" value="low"></radio>
+              <label for="">Medium</label>
+              <input type="radio" name="priority" value="medium"></radio>
+              <label for="">High</label>
+              <input type="radio" name="priority" value="high"></radio>
+            </div>
+          </div>
+        </div>
+        <div class="add-right">
+            <ion-icon name="add-sharp" id="btn-add-event" class="btn-add-event"></ion-icon>
+        </div>
+
+
       </div>
       <div class="content" id="content"></div>
     </div>
